@@ -14,6 +14,12 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
-        
+        stage('Deploy') {
+          steps {
+            input 'Do you approve the deployment?'
+            sh 'scp target/*.jar ec2-user@52.206.180.13:/opt/pet/'
+            sh "ssh ec2-user@52.206.180.13 'nohup java -jar /opt/pet/spring-petclinic-1.5.1.jar &'"
+          }
+        }        
     }
 }

@@ -14,12 +14,6 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
-        stage('Deploy') {
-          steps {
-            input 'Do you approve the deployment?'
-            sh 'scp target/*.jar jenkins@XXX.XXX.XXX.XX:/opt/pet/'
-            sh "ssh jenkins@XXX.XXX.XXX.XX 'nohup java -jar /opt/pet/spring-petclinic-1.5.1.jar &'"
-          }
-        }
+        
     }
 }

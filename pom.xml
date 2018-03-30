@@ -13,6 +13,7 @@
     <version>2.0.0.RELEASE</version>
   </parent>
   <name>petclinic</name>
+  <packaging>war</packaging>  
 
   <properties>
 
@@ -21,12 +22,27 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+     <!-- Spring -->
+     <spring-io-platform.version>Cairo-RC1</spring-io-platform.version>
+     <spring-data-jdbc.version>1.1.0.RELEASE</spring-data-jdbc.version>      
+
     <!-- Web dependencies -->
     <webjars-bootstrap.version>3.3.6</webjars-bootstrap.version>
     <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
     <webjars-jquery.version>2.2.4</webjars-jquery.version>
     <wro4j.version>1.8.0</wro4j.version>
+    
+    <!-- Java EE / Java SE dependencies -->
+    <tomcat.version>8.0.50</tomcat.version>
 
+    <!-- Test -->
+    <assertj.version>2.2.0</assertj.version>
+
+    <!-- Others -->
+    <mysql-driver.version>5.1.36</mysql-driver.version>
+
+    <postgresql-driver.version>9.4.1211.jre7</postgresql-driver.version>
+      
     <cobertura.version>2.7</cobertura.version>
 
   </properties>
@@ -215,6 +231,14 @@
           <check />
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+           <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>  
     </plugins>
   </reporting>
 

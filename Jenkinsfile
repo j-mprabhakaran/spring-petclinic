@@ -17,8 +17,9 @@ pipeline {
         stage('Deploy') {
           steps {
             input 'Do you approve the deployment?'
-            sh 'curl -v -u admin:admin -T /var/lib/jenkins/workspace/spring_petclinic_pipeline/target/*.war http://52.206.180.13:8080/manager/text/deploy?path=/petclinic&update=true'
+            sh 'curl -v -u admin:admin -T /var/lib/jenkins/workspace/spring_petclinic_pipeline@2/target/*.war http://52.206.180.13:8080/manager/text/deploy?path=/petclinic&update=true'
           }
         }        
     }
 }
+

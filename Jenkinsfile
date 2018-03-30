@@ -11,14 +11,13 @@ pipeline {
             steps {
                 sh 'mvn clean package'
                 junit '**/target/surefire-reports/TEST-*.xml'
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
             }
         }
         stage('Deploy') {
           steps {
             input 'Do you approve the deployment?'
-            sh 'scp target/*.jar prabhakaran@20.198.164.101:/opt/pet/'
-            sh "ssh prabhakaran@20.198.164.101 'nohup java -jar /opt/pet/spring-petclinic-1.5.1.jar &'"
+            sh 'curl -v -u admin:admin -T /home/jenkins/workspace/spring_petclinic_pipeline/target/*.war http://52.206.180.13:8080/manager/text/deploy?path=/petclinic&update=true'
           }
         }        
     }
